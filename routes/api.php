@@ -27,8 +27,8 @@ Route::namespace('App\Http\Controllers')
         Route::middleware([
             'auth:sanctum',
         ])->group(function () {
-            Route::apiResource('todos', 'TodoController')->only(['index', 'store', 'destroy']);
-            Route::match(['put', 'patch'],'todos', 'TodoController@update')->name('todos.update');
+            Route::apiResource('todos', 'TodoController')->except('show');
+            // Route::match(['put', 'patch'],'todos', 'TodoController@update')->name('todos.update');
             // Route::delete('todos', 'TodoController@destroy')->name('todos.destroy');
 
             // 登出

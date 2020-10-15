@@ -59,7 +59,6 @@ class TodoService
      */
     public function update(Todo $todo, Request $request): Todo
     {
-        $todo = $todo->find($request->id);
         $todo->update([
             'content' => $request->content,
             'is_complete' => $request->is_complete,

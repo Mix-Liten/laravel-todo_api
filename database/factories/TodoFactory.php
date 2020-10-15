@@ -24,7 +24,6 @@ class TodoFactory extends Factory
     {
         return [
             'content' => $this->faker->sentence(2),
-            'is_complete' => false,
         ];
     }
 }

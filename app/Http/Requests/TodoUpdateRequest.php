@@ -24,10 +24,6 @@ class TodoUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => [
-                'required',
-                'numeric',
-            ],
             'content' => [
                 'required',
                 'string',
