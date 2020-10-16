@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Todo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
 
 class TodoService
 {
@@ -27,11 +28,11 @@ class TodoService
 
     /**
      * @param  Todo  $todo
-     * @return Model|Todo
+     * @return Collection
      */
-    public function getAllByUser(User $user)
+    public function getAllByUser(User $user): Collection
     {
-        $todos = $this->todo->where('created_by', $user->id)->get();
+        $todos = $user->todos;
         return $todos;
     }
 
@@ -43,11 +44,10 @@ class TodoService
     public function store(User $user, Request $request): Todo
     {
         /** @var Todo $todo */
-        $todo = new Todo;
-        $todo->content = $request->content;
-        $todo->is_complete = false;
-        $todo->created_by = $user->id;
-        $todo->save();
+        $todo = $user->todos()->create([
+            'content' => $request->content,
+            'is_completed' => false,
+        ]);
 
         return $todo;
     }
@@ -59,10 +59,7 @@ class TodoService
      */
     public function update(Todo $todo, Request $request): Todo
     {
-        $todo->update([
-            'content' => $request->content,
-            'is_complete' => $request->is_complete,
-        ]);
+        $todo->update($request->all());
 
         return $todo;
     }
@@ -74,7 +71,7 @@ class TodoService
      */
     public function destroy(User $user, Todo $todo): bool
     {
-        return $this->todo::where('created_by', $user->id)
+        return $user->todos
             ->find($todo->id)
             ->delete();
     }

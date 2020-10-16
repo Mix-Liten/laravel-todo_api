@@ -30,15 +30,13 @@ class TodoPolicy
         return true;
     }
 
-    // public function update(User $user, Todo $todo, int $todo_id)
     public function update(User $user, Todo $todo)
     {
-        return $user->id == $todo->created_by;
-        // return $user->id == $todo->find($todo_id)->created_by;
+        return $user->id == $todo->user->id;
     }
 
     public function delete(User $user, Todo $todo)
     {
-        return $user->id == $todo->created_by;
+        return $user->id == $todo->user->id;
     }
 }

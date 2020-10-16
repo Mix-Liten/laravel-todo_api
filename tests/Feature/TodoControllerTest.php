@@ -32,7 +32,7 @@ class TodoControllerTest extends TestCase
                 'data' => [
                     [
                         'content',
-                        'is_complete',
+                        'is_completed',
                     ],
                 ],
             ]);
@@ -67,7 +67,7 @@ class TodoControllerTest extends TestCase
 
         $data = Todo::factory()->make([
             'content' => 'test content',
-            'is_complete' => false,
+            'is_completed' => false,
         ])->toArray();
 
         $this->json('PUT', 'api/todos/'.$todo->id, $data)
@@ -90,7 +90,7 @@ class TodoControllerTest extends TestCase
 
         $data = Todo::factory()->make([
             'content' => 'test content',
-            'is_complete' => false,
+            'is_completed' => false,
         ])->toArray();
 
         $this->json('PUT', 'api/todos/'.$todo->id, $data)

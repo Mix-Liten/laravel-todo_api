@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TodoUpdateRequest extends FormRequest
 {
@@ -25,12 +26,10 @@ class TodoUpdateRequest extends FormRequest
     {
         return [
             'content' => [
-                'required',
                 'string',
                 'min:1',
             ],
-            'is_complete' => [
-                'required',
+            'is_completed' => [
                 'boolean',
             ],
         ];
