@@ -27,8 +27,8 @@ class TodoService
     }
 
     /**
-     * @param  Todo  $todo
-     * @return Collection
+     * @param  User  $user
+     * @return Collection  Todo[]
      */
     public function getAllByUser(User $user): Collection
     {

@@ -18,6 +18,22 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+// Route::namespace('App\Http\Controllers')
+//     ->group(function () {
+//         // 註冊
+//         Route::post('users', 'UserController@store')->name('signup');
+//         // 登入
+//         Route::post('tokens', 'TokenController@store')->name('login');
+
+//         Route::middleware([
+//             // 'auth:sanctum',
+//         ])->group(function () {
+//             Route::apiResource('todos', 'TodoController')->except('show');
+//             // 登出
+//             Route::delete('tokens', 'TokenController@destroy')->name('logout');
+//         });
+//     });
+
 // 註冊
 Route::post('users', [UserController::class, 'store'])->name('signup');
 // 登入

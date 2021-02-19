@@ -41,6 +41,38 @@
 6. 寫測試
    - 驗證 API 可能會發生的狀況，確認正常取得資料及請求參數錯誤...等行為皆符合預期
 
+## Development
+
+- 啟用/停用環境
+   ```bash
+   # 第一次啟用
+   $ docker-compose up -d nginx mysql
+   # 之後啟用
+   $ docker-compose up -d
+   # 停用
+   $ docker-compose stop
+   ```
+- 進資料庫虛擬機內查看資料
+   ```bash
+   $ docker-compose exec mysql bash
+   $ mysql -u <user> -p
+   ```
+- 一些 Laravel 相關指令
+   ```bash
+   # 清除所有快取
+   $ php artisan optimize
+   # 列出路由清單
+   $ php artisan route:list
+   # 清空資料庫
+   $ php artisan migrate:reset
+   # 重置資料庫，同時使用種子建立假資料
+   $ php artisan migrate:fresh --seed
+   ```
+- 執行測試
+   ```
+   $ php artisan test
+   ```
+
 ## Conclusion
 
 離上次使用 Laravel 有一段時間了，直接從 v5.8 跳到 v8.9，多少有些地方稍微會卡到，這次用這套來實作一個相對完整的 API，用在公司討論會和前端同事分享，正常的 API 開發時應該有的各種細節。
